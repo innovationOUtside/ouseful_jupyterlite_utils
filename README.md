@@ -25,7 +25,7 @@ It can be installed using micropip from the wheel in this repo:
 ```python
 import micropip
 
-package_url = "https://raw.githubusercontent.com/innovationOUtside/ouseful_jupyterlite_utils/main/src/ouseful_jupyterlite_utils-0.0.1-py3-none-any.whl"
+package_url = "https://raw.githubusercontent.com/innovationOUtside/ouseful_jupyterlite_utils/main/ouseful_jupyterlite_utils-0.0.1-py3-none-any.whl"
 
 await micropip.install(package_url)
 ```
