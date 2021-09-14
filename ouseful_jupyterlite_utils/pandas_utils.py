@@ -40,7 +40,7 @@ async def get_contents(path):
 # Via: https://github.com/jupyterlite/jupyterlite/issues/119#issuecomment-854495013
 async def read_csv_local(fn, sep=","):
     """"""
-    return pandas.read_csv(io.StringIO((await get_contents(fn))["content"]), sep = sep)
+    return pd.read_csv(io.StringIO((await get_contents(fn))["content"]), sep = sep)
 
 #df = await read_csv_jupyterlite("iris.csv", "\t")
 #df
