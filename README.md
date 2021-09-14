@@ -8,10 +8,12 @@ Package currently includes:
 from ouseful_jupyterlite_utils import pandas_utils as pdu
 
 # Load CSV from URL
+# Via @jtpio
 URL = "https://support.staffbase.com/hc/en-us/article_attachments/360009197031/username.csv"
 df = await pdu.read_csv_url(URL, "\t")
 
 # Load CSV from local browser storage
+# Via @bollwyvl
 df = await pdu.read_csv_local("iris.csv", "\t")
 df
 ```
