@@ -2,7 +2,7 @@
 
 Utilities for working with JupyterLite
 
-*This package is intended to provide intermediate support, patches, hacks, fixes and workarounds, as much as anything, for things that you might expect to be able to do, but arenlt yet acheivable, in pyodide and jupyterlite.*
+*This package is intended to provide intermediate support, patches, hacks, fixes and workarounds, as much as anything, for things that you might expect to be able to do, but that aren't yet acheivable, in pyodide and jupyterlite.*
 
 *Please check the source code for attribution of where the various hacks came from... I'll try to add a proper attributio notice to this page when I get a chance...*
 
