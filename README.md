@@ -22,6 +22,8 @@ df = await pdu.read_csv_local("iris.csv", "\t")
 df
 ```
 
+*See also this tidier, non-await route for loading data into pandas from a URL, [via @simonw](https://github.com/simonw/datasette-jupyterlite/issues/2#issuecomment-956586201): `import pandas, pyodide; pandas.read_csv(pyodide.open_url(URL))`*
+
 ## Installation
 
 This package is intended to be used with JupyterLite in a pyodide kernel.
