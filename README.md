@@ -6,7 +6,11 @@ Utilities for working with JupyterLite
 
 *Please check the source code for attribution of where the various hacks came from... I'll try to add proper attribution notices to this page when I get a chance...*
 
-Package currently includes:
+## Package Features
+
+Package currently includes utilities to load SQLite database into memroy from a URL and tools to load files from URLs and local sreorage into `pandas` dataframes.
+
+### Load SQLite Database into Memory From URL
 
 ```python
 # Ish via https://til.simonwillison.net/python/sqlite-in-pyodide
@@ -27,6 +31,8 @@ c = sqlite3.connect(db_file)
 c.execute("SELECT name FROM sqlite_master WHERE type='table';").fetchall()
 ```
 
+### Load CSV File From a URL into a `pandas` Dataframe
+
 ```python
 from ouseful_jupyterlite_utils import pandas_utils as pdu
 
@@ -35,13 +41,22 @@ from ouseful_jupyterlite_utils import pandas_utils as pdu
 URL = "https://support.staffbase.com/hc/en-us/article_attachments/360009197031/username.csv"
 df = await pdu.read_csv_url(URL) # Pass separator, if required, as second parameter
 
-# Load CSV from local browser storage
-# Via @bollwyvl
+A simple, non-await route for loading data into pandas from a URL:
+
+```python
+# via @simonw: https://github.com/simonw/datasette-jupyterlite/issues/2#issuecomment-956586201
+import pandas, pyodide
+pandas.read_csv(pyodide.open_url(URL))
+# Also available as pdu.read_csv(URL)
+```
+
+### Load CSV into `pandas` dataframe from local browser storage
+
+```python
+ Via @bollwyvl
 df = await pdu.read_csv_local("iris.csv")
 df
 ```
-
-*See also this tidier, non-await route for loading data into pandas from a URL, [via @simonw](https://github.com/simonw/datasette-jupyterlite/issues/2#issuecomment-956586201): `import pandas, pyodide; pandas.read_csv(pyodide.open_url(URL))`*
 
 ## Installation
 

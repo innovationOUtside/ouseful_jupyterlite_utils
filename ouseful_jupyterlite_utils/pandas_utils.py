@@ -2,6 +2,8 @@ import pandas as pd
 import io
 from js import fetch
 
+import pandas, pyodide
+
 from .utils import get_contents
 
 import warnings 
@@ -16,7 +18,7 @@ async def read_csv_local(fn, sep=","):
 #df
 
 async def read_csv_url(url, sep=",", dummy_fn="_data.csv"):
-    """Load CSV file from URL into pandas dataframe."""
+    """Async load CSV file from URL into pandas dataframe."""
     res = await fetch(url)
     text = await res.text()
 
@@ -30,3 +32,10 @@ async def read_csv_url(url, sep=",", dummy_fn="_data.csv"):
 #URL = "https://support.staffbase.com/hc/en-us/article_attachments/360009197031/username.csv"
 #df = await read_csv_url(URL, "\t")
 #df
+
+# via @simonw: https://github.com/simonw/datasette-jupyterlite/issues/2#issuecomment-956586201
+
+def read_csv(url, sep=","):
+    """Direct load CSV file from URL into pandas dataframe."""
+    data = pandas.read_csv(pyodide.open_url(url), sep=sep)
+    return data
