@@ -39,7 +39,8 @@ from ouseful_jupyterlite_utils import pandas_utils as pdu
 # Load CSV from URL
 # Via @jtpio
 URL = "https://support.staffbase.com/hc/en-us/article_attachments/360009197031/username.csv"
-df = await pdu.read_csv_url(URL) # Pass separator, if required, as second parameter
+df = await pdu.read_csv_url(URL, sep=";") # Pass separator, if required, as second parameter
+```
 
 A simple, non-await route for loading data into pandas from a URL:
 
@@ -54,7 +55,7 @@ pandas.read_csv(pyodide.open_url(URL), sep=";")
 
 ```python
 #Via @bollwyvl
-df = await pdu.read_csv_local("iris.csv")
+df = await pdu.read_csv_local("iris.csv") # Use default separator
 df
 ```
 
@@ -70,9 +71,8 @@ import micropip
 package_url = "https://raw.githubusercontent.com/innovationOUtside/ouseful_jupyterlite_utils/main/ouseful_jupyterlite_utils-0.0.2-py3-none-any.whl"
 
 await micropip.install(package_url)
-#await micropip.install("pandas")
 ```
 
-To build the wheel from the package source: `pip wheel .`
+To build the wheel from the package source: `pip3 wheel .`
 
 TO DO: automation to build the wheel and update the README to use new version wheels.
