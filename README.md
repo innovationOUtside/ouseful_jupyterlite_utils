@@ -9,6 +9,28 @@ Utilities for working with JupyterLite
 Package currently includes:
 
 ```python
+# Ish via https://til.simonwillison.net/python/sqlite-in-pyodide
+from ouseful_jupyterlite_utils.sqlite_utils import load_file_into_in_mem_filesystem
+
+#Load file from URL into filesystem
+load_file_into_in_mem_filesystem(url):
+# Use: fn="mydb.db" to specify db name
+# Otherwise, the file is saved using the original file name
+
+# Call as:
+url="https://raw.githubusercontent.com/psychemedia/lang-fairy-books/main/data.db"
+db_file = await load_file_into_in_mem_filesystem(url)
+
+# Demo:
+import sqlite3
+# Open database connection
+c = sqlite3.connect(db_file)
+
+# Show database tables
+c.execute("SELECT name FROM sqlite_master WHERE type='table';").fetchall()
+```
+
+```python
 from ouseful_jupyterlite_utils import pandas_utils as pdu
 
 # Load CSV from URL
