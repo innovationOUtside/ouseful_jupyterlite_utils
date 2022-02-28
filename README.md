@@ -46,14 +46,14 @@ A simple, non-await route for loading data into pandas from a URL:
 ```python
 # via @simonw: https://github.com/simonw/datasette-jupyterlite/issues/2#issuecomment-956586201
 import pandas, pyodide
-pandas.read_csv(pyodide.open_url(URL))
-# Also available as pdu.read_csv(URL)
+pandas.read_csv(pyodide.open_url(URL), sep=";")
+# Also available as pdu.read_csv(URL, sep=";")
 ```
 
 ### Load CSV into `pandas` dataframe from local browser storage
 
 ```python
- Via @bollwyvl
+#Via @bollwyvl
 df = await pdu.read_csv_local("iris.csv")
 df
 ```
