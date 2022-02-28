@@ -12,14 +12,11 @@ Package currently includes:
 # Ish via https://til.simonwillison.net/python/sqlite-in-pyodide
 from ouseful_jupyterlite_utils.sqlite_utils import load_file_into_in_mem_filesystem
 
-#Load file from URL into filesystem
-load_file_into_in_mem_filesystem(url):
-# Use: fn="mydb.db" to specify db name
-# Otherwise, the file is saved using the original file name
-
 # Call as:
 url="https://raw.githubusercontent.com/psychemedia/lang-fairy-books/main/data.db"
 db_file = await load_file_into_in_mem_filesystem(url)
+# Use: fn="mydb.db" to specify db name
+# Otherwise, the file is saved using the original file name
 
 # Demo:
 import sqlite3
