@@ -13,7 +13,7 @@ def get_long_description():
 setup(name='ouseful_jupyterlite_utils',
       author='Tony Hirst',
       author_email='tony.hirst@open.ac.uk',
-      install_requires=[],
+      install_requires=['pandas'],
       version='0.0.2',
       description='OUseful JupyterLite utlities.',
       long_description=get_long_description(),

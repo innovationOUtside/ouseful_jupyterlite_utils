@@ -36,11 +36,11 @@ from ouseful_jupyterlite_utils import pandas_utils as pdu
 # Load CSV from URL
 # Via @jtpio
 URL = "https://support.staffbase.com/hc/en-us/article_attachments/360009197031/username.csv"
-df = await pdu.read_csv_url(URL, "\t")
+df = await pdu.read_csv_url(URL) # Pass separator, if required, as second parameter
 
 # Load CSV from local browser storage
 # Via @bollwyvl
-df = await pdu.read_csv_local("iris.csv", "\t")
+df = await pdu.read_csv_local("iris.csv")
 df
 ```
 
@@ -58,6 +58,7 @@ import micropip
 package_url = "https://raw.githubusercontent.com/innovationOUtside/ouseful_jupyterlite_utils/main/ouseful_jupyterlite_utils-0.0.1-py3-none-any.whl"
 
 await micropip.install(package_url)
+#await micropip.install("pandas")
 ```
 
 To build the wheel from the package source: `pip wheel .`
