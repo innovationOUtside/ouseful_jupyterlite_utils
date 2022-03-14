@@ -59,6 +59,22 @@ df = await pdu.read_csv_local("iris.csv") # Use default separator
 df
 ```
 
+## Load function in from remote URL
+
+We can load a code file in from a remote URL and then `exec()` it to run the code in the file (via @dougRzz):
+
+```python
+import pyodide
+
+# Load in the contents of `ouseful_jupyterlite_utils/utils` package from a remote URL:
+
+URL = "https://raw.githubusercontent.com/innovationOUtside/ouseful_jupyterlite_utils/main/ouseful_jupyterlite_utils/utils.py"
+exec(pyodide.open_url(URL).read())
+
+# The `get_content()` function inside that file will now be available to call.
+# Note that if the file tries to load in local relative files imported inside the package, they won't be available
+```
+
 ## Load Text file from local browser storage
 
 We can load the contents of a file in from local browser storage
