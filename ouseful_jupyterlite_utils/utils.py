@@ -5,7 +5,7 @@ DB_NAME = "JupyterLite Storage"
 
 # Via: https://github.com/jupyterlite/jupyterlite/discussions/91#discussioncomment-1137213
 async def get_contents(path):
-    """Load CSV file from in-browser storage into pandas dataframe.
+    """Load file from in-browser storage. Contents are in ['content'].
     
     Use the IndexedDB API to access JupyterLite's in-browser (for now) storage
     
