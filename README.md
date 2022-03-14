@@ -42,8 +42,7 @@ TO DO: automation to build the wheel and update the README to use new version wh
 
 ## Package Features
 
-Package currently includes utilities to load SQLite database into memroy from a URL and tools to load files from URLs and local sreorage into `pandas` dataframes.
-
+Package currently includes utilities to load remote files into memory (for example, load a remote SQLite database into memory from a URL) and tools to load files from URLs and local sreorage into `pandas` dataframes.
 
 ## Load function in from remote URL
 
@@ -99,7 +98,7 @@ f
 
 ```python
 # Ish via https://til.simonwillison.net/python/sqlite-in-pyodide
-from ouseful_jupyterlite_utils.sqlite_utils import load_file_into_in_mem_filesystem
+from ouseful_jupyterlite_utils.utils import load_file_into_in_mem_filesystem
 
 # Call as:
 url="https://raw.githubusercontent.com/psychemedia/lang-fairy-books/main/data.db"
