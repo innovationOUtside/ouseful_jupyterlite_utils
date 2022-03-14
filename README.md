@@ -59,6 +59,33 @@ df = await pdu.read_csv_local("iris.csv") # Use default separator
 df
 ```
 
+## Load Text file from local browser storage
+
+We can load the contents of a file in from local browser storage
+
+```
+from ouseful_jupyterlite_utils.utils import get_contents
+
+f = await get_contents("test.md")
+f
+"""
+{'name': 'test.md',
+ 'path': 'test.md',
+ 'last_modified': '2022-03-14T17:29:45.657Z',
+ 'created': '2022-03-14T17:28:45.142Z',
+ 'format': 'text',
+ 'mimetype': 'text/plain',
+ 'content': '# Heading\n\nExample text.\n',
+ 'size': None,
+ 'writable': True,
+ 'type': 'file'}
+"""
+
+# Contents are in: f['content']
+# Also access file contents eg via `import io ; io.StringIO(f["content"])`
+```
+
+
 ## Installation
 
 This package is intended to be used with JupyterLite in a pyodide kernel.
