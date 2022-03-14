@@ -6,6 +6,17 @@ Utilities for working with JupyterLite
 
 *Please check the source code for attribution of where the various hacks came from... I'll try to add proper attribution notices to this page when I get a chance...*
 
+## Load in file from remote URL
+
+We can easily read in a file from a remote URL using `pyodide.open_url(url)`:
+
+```
+import pyodide
+url="https://raw.githubusercontent.com/innovationOUtside/ouseful_jupyterlite_utils/main/ouseful_jupyterlite_utils/utils.py"
+
+pyodide.open_url(url).read()
+```
+
 ## Package Features
 
 Package currently includes utilities to load SQLite database into memroy from a URL and tools to load files from URLs and local sreorage into `pandas` dataframes.
