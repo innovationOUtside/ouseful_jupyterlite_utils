@@ -1,8 +1,13 @@
 import asyncio
 import js
+from pyodide import open_url
 
 DB_NAME = "JupyterLite Storage"
 
+def remote_load(url):
+    """Import and run code from a remote URL."""
+    exec(open_url(url).read(), globals())
+    
 # Via: https://github.com/jupyterlite/jupyterlite/discussions/91#discussioncomment-1137213
 async def get_contents(path):
     """Load file from in-browser storage. Contents are in ['content'].
