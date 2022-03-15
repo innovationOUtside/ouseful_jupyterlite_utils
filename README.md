@@ -9,6 +9,17 @@ Utilities for working with JupyterLite
 
 ## Handy Tricks
 
+Check what platform you are on. For example:
+
+```python
+import platform as p
+
+p.platform(), p.system(), p.machine(), p.architecture()
+"""
+('Emscripten-1.0-wasm32-32bit', 'Emscripten', 'wasm32', ('32bit', ''))
+"""
+```
+
 This package is based on various handy tricks collected from various sources.
 ### Load in file from remote URL
 
