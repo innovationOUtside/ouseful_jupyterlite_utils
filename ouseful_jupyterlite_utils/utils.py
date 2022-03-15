@@ -4,6 +4,11 @@ import js
 from js import fetch
 from pyodide.http import pyfetch
 
+def guess_domain():
+    """Guess domain the JupyterLite environment is served from."""
+    location = '/'.join(':'.join(str(js.location).split(':')[1:]).split('/')[:-1])
+    return location
+
 # Ish via https://til.simonwillison.net/python/sqlite-in-pyodide
 from pyodide import open_url
 

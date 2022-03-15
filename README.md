@@ -19,6 +19,24 @@ p.platform(), p.system(), p.machine(), p.architecture()
 ('Emscripten-1.0-wasm32-32bit', 'Emscripten', 'wasm32', ('32bit', ''))
 """
 ```
+Guess at the domain the environment is being served from:
+
+```python
+
+import js
+from pathlib import Path
+
+def guess_domain():
+    """Guess domain the JupyterLite environment is served from."""
+    location = '/'.join(':'.join(str(js.location).split(':')[1:]).split('/')[:-1])
+    return location
+
+guess_domain()
+
+"""
+'http://localhost:9000'
+"""
+```
 
 This package is based on various handy tricks collected from various sources.
 ### Load in file from remote URL
