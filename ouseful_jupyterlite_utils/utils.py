@@ -1,6 +1,8 @@
 import asyncio
 import js
+
 from js import fetch
+from pyodide.http import pyfetch
 
 # Ish via https://til.simonwillison.net/python/sqlite-in-pyodide
 from pyodide import open_url
@@ -56,6 +58,18 @@ async def load_file_into_in_mem_filesystem(url, fn=None):
     # Write file to in-memory file system
     open(fn, "wb").write(bytes(buffer.valueOf().to_py()))
  
+    return fn
+
+# There is also another possible implementation
+async def load_file_into_in_mem_filesystem2(url, fn=None):
+    # Create a filename if required
+    fn = fn if fn is not None else url.split("/")[-1]
+    res = await pyfetch(url)
+    stream = await res.bytes()
+
+    # Write file to in-memory file system
+    open(fn, "wb").write(stream)
+    
     return fn
 
 # Call as:
