@@ -65,17 +65,23 @@ async def load_file_into_in_mem_filesystem(url, fn=None):
  
     return fn
 
+async def get_stream_from_url(url):
+    res = await pyfetch(url)
+    stream = await res.bytes()
+    return stream
+
 # There is also another possible implementation
 async def load_file_into_in_mem_filesystem2(url, fn=None):
     # Create a filename if required
     fn = fn if fn is not None else url.split("/")[-1]
-    res = await pyfetch(url)
-    stream = await res.bytes()
+
+    stream = await get_stream_from_url(url)
 
     # Write file to in-memory file system
     open(fn, "wb").write(stream)
     
     return fn
+
 
 # Call as:
 # url="https://raw.githubusercontent.com/psychemedia/lang-fairy-books/main/data.db"
