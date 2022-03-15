@@ -164,6 +164,21 @@ pandas.read_csv(pyodide.open_url(URL), sep=";")
 # Also available as pdu.read_csv(URL, sep=";")
 ```
 
+### Load pickle file from URL
+
+Ish [via @rth](https://github.com/jupyterlite/jupyterlite/issues/119#issuecomment-1025817324):
+
+```python
+import pickle
+from ouseful_jupyterlite_utils.utils import get_stream_from_url
+
+url = "https://raw.githubusercontent.com/jmshea/digicom-jupyter/main/content/signals.pkl"
+
+stream = await get_stream_from_url(url)
+data = pickle.loads(stream)
+data
+```
+
 ### Load CSV into `pandas` dataframe from local browser storage
 
 ```python
