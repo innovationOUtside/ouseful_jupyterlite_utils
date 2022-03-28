@@ -38,6 +38,10 @@ guess_domain()
 """
 ```
 
+The `requests` package doesn't work out of the can, but here's a way round it for now... [*Making the Python requests module work in Pyodide*](https://bartbroere.eu/2021/11/05/pyodide-requests/) and [`bartbroere/pyodide-requests`](https://github.com/bartbroere/pyodide-requests).
+
+
+
 This package is based on various handy tricks collected from various sources.
 ### Load in file from remote URL
 
