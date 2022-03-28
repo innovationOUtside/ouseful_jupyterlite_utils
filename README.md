@@ -9,6 +9,10 @@ Utilities for working with JupyterLite
 
 ## Handy Tricks
 
+A collection of handy tricks, collected from various source, some of which are bundled inside the package created from this repo.
+
+### What platform am I on?
+
 Check what platform you are on. For example:
 
 ```python
@@ -19,6 +23,9 @@ p.platform(), p.system(), p.machine(), p.architecture()
 ('Emscripten-1.0-wasm32-32bit', 'Emscripten', 'wasm32', ('32bit', ''))
 """
 ```
+
+### What domain am I on?
+
 Guess at the domain the environment is being served from:
 
 ```python
@@ -38,11 +45,14 @@ guess_domain()
 """
 ```
 
+### How do I reset a modified, distributed file back to the original?
+
+If a file is shipped with the JupyterLite distribution, you can open it, edit it, and save the modified version to browser storage. To reet the file to the original, shipped version, just delete it... This will delete it from the browser storage and it will reappear in its original form. (If for some reason it doesn't reappear after deleting it, just reload the JupyterLite enviroment.)
+
+### How do I use `requests`'?
+
 The `requests` package doesn't work out of the can, but here's a way round it for now... [*Making the Python requests module work in Pyodide*](https://bartbroere.eu/2021/11/05/pyodide-requests/) and [`bartbroere/pyodide-requests`](https://github.com/bartbroere/pyodide-requests).
 
-
-
-This package is based on various handy tricks collected from various sources.
 ### Load in file from remote URL
 
 We can easily read in a file from a remote URL using `pyodide.open_url(url)`:
@@ -126,6 +136,15 @@ f
 # Contents are in: f['content']
 # Also access file contents eg via `import io ; io.StringIO(f["content"])`
 ```
+
+### Getting a File into Local Browser Storage
+
+Just because you can see a file in the JupyterLab file browser doesnlt mean it's in browser storage. If you use browser developer tools, you can look to see what *is* available there.
+
+![image](https://user-images.githubusercontent.com/82988/160463048-55a6abf8-1c00-4fd4-b03a-757469c02424.png)
+
+To ensure that e.g. a data file *is* available in browser storage, you can double click on it in the file browser to open it __and then save it__. This will have the side effect of saving it into browser storage.
+
 
 ### Load SQLite Database into Memory From URL
 
