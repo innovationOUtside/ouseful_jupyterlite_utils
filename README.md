@@ -45,6 +45,8 @@ guess_domain()
 """
 ```
 
+Files can be found on the path `/files`
+
 ### How do I reset a modified, distributed file back to the original?
 
 If a file is shipped with the JupyterLite distribution, you can open it, edit it, and save the modified version to browser storage. To reet the file to the original, shipped version, just delete it... This will delete it from the browser storage and it will reappear in its original form. (If for some reason it doesn't reappear after deleting it, just reload the JupyterLite enviroment.)
@@ -137,7 +139,7 @@ f
 # Also access file contents eg via `import io ; io.StringIO(f["content"])`
 ```
 
-### Getting a File into Local Browser Storage
+### Getting a File into Local Browser Storage
 
 Just because you can see a file in the JupyterLab file browser doesnlt mean it's in browser storage. If you use browser developer tools, you can look to see what *is* available there.
 
