@@ -23,7 +23,7 @@ def remote_load(url):
     exec(open_url(url).read(), globals())
     
 # Via: https://github.com/jupyterlite/jupyterlite/discussions/91#discussioncomment-1137213
-async def get_contents(path):
+async def get_contents(path, raw=False):
     """Load file from in-browser storage. Contents are in ['content'].
     
     Use the IndexedDB API to access JupyterLite's in-browser (for now) storage
@@ -50,7 +50,12 @@ async def get_contents(path):
     
     await queue.get()
     
-    return IDBRequest.result.to_py() if IDBRequest.result else None
+    response = IDBRequest.result.to_py() if IDBRequest.result else None
+
+    if raw:
+        return response
+    else:
+        return response['content'] if response else None
 
 async def load_file_into_in_mem_filesystem(url, fn=None):
     """Load a file from a URL into an in-memory filesystem."""

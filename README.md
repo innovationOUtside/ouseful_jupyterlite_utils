@@ -133,7 +133,7 @@ We can load the contents of a file in from local browser storage
 ```python
 from ouseful_jupyterlite_utils.utils import get_contents
 
-f = await get_contents("test.md")
+f = await get_contents("test.md", raw=True)
 f
 """
 {'name': 'test.md',
@@ -152,11 +152,13 @@ f
 # Also access file contents eg via `import io ; io.StringIO(f["content"])`
 ```
 
+The default setting of `raw=False` returns just the contents of the file (that is, f['content'] in the above example).
+
 ## Write file to local browser storage
 
 You can save a file to browser storage as follows:
 
-```
+```python
 from ouseful_jupyterlite_utils.utils import put_contents
 
 txt = """
@@ -164,7 +166,7 @@ Some text.
 Some more text.
 """
 
- await put_contents(txt, "test.txt")
+await put_contents(txt, "test.txt")
 ```
 
 If you refresh the browser, you should see the saved file in the file browser.
