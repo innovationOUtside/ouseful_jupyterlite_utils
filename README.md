@@ -6,6 +6,20 @@ Utilities for working with JupyterLite
 
 *Please check the source code for attribution of where the various hacks came from... I'll try to add proper attribution notices to this page when I get a chance...*
 
+## WARNING
+
+It's not immediately obvious to the user what files are available where. The following represents my superstitious understanding of how to work with files:
+
+- files in the file browser can be double clicked on and opened;
+- files that are saved from JupyterLab / RetroLab UI are saved into browser storage;
+- if you double click a file in the file browser, if it exists in browser storage, it will be loaded from there;
+- if a file is included in the JupyerLite distribution and appears in the file browser, if you delete the file, it will be deleted from browser storage but will still appear in the file browser; if you now open it, *the original distribution version* will be loaded back into browser storage and that is the version you will work with.
+- files that are downloaded from a URL and saved are saved into browser storage.
+
+If you want to access a datafile, (eg read a CSV file into *pandas*) you need to get it into browser storage somehow. For example:
+
+- access it from a URL and then save it to local storage;
+- double click on it in the file browser *and then save it* (this will put a copy into browser stroage).
 
 ## Handy Tricks
 
@@ -37,6 +51,8 @@ guess_domain()
 'http://localhost:9000'
 """
 ```
+
+In some cases, you may be able to use trick when trying to load files from the "local" Jupterlite filesystem via the file URL (does not work on `try.jupyter.org`). In other cases, you may need to find the domain name *and the path to the distribution* as well as data directory path. For example in the [https://jupyterlite.github.io/demo/lab/index.html](https://jupyterlite.github.io/demo/lab/index.html) demo, `guess_domain()` returns 'https://jupyterlite.github.io' but the environment actually lives at `https://jupyterlite.github.io/demo/`. Files can be downloaded from the environment on the path `JUPYTERLITE_DOMAIN/PATH/files/`. For the JupyterLite demo environment, the `files` path is `https://jupyterlite.github.io/demo/files/`. Files can then be downloaded by adding the file browser path to a file, for example: `https://jupyterlite.github.io/demo/files/data/iris.csv`.
 
 This package is based on various handy tricks collected from various sources.
 ### Load in file from remote URL
@@ -123,7 +139,24 @@ f
 # Also access file contents eg via `import io ; io.StringIO(f["content"])`
 ```
 
-### Load SQLite Database into Memory From URL
+## Write file to local browser storage
+
+You can save a file to browser storage as follows:
+
+```
+from ouseful_jupyterlite_utils.utils import put_contents
+
+txt = """
+Some text.
+Some more text.
+"""
+
+ await put_contents(txt, "test.txt")
+```
+
+If you refresh the browser, you should see the saved file in the file browser.
+
+## Load SQLite Database into Memory From URL
 
 ```python
 # Ish via https://til.simonwillison.net/python/sqlite-in-pyodide
@@ -186,3 +219,17 @@ data
 df = await pdu.read_csv_local("iris.csv") # Use default separator
 df
 ```
+
+### Save `pandas` dataframe to CSV in local browser storage
+
+```python
+#Via @oscar6echo
+await pdu.to_csv_local(df, "test1.csv")
+await pdu.to_csv_local(df, "test1.csv", overwrite=True)
+
+# Read it back in
+df2 = await pdu.read_csv_local("test1.csv")
+df2
+```
+
+If you refresh the browser, you should see the saved file in the file browser.

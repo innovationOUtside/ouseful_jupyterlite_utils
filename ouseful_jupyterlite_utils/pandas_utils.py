@@ -5,6 +5,7 @@ from js import fetch
 import pandas, pyodide
 
 from .utils import get_contents
+from .utils import put_contents
 
 import warnings 
 warnings.filterwarnings("ignore")
@@ -13,9 +14,14 @@ warnings.filterwarnings("ignore")
 async def read_csv_local(fn, sep=","):
     """"""
     return pd.read_csv(io.StringIO((await get_contents(fn))["content"]), sep = sep)
-
-#df = await read_csv_jupyterlite("iris.csv", "\t")
+#df = await read_csv_local("iris.csv", "\t")
 #df
+
+async def to_csv_local(df, path, overwrite=False):
+    """Save dataframe to local CSV file."""
+    await put_contents(df.to_csv(), path, overwrite)
+# await to_csv_local(df, "mydata.csv")
+
 
 async def read_csv_url(url, sep=",", dummy_fn="_data.csv"):
     """Async load CSV file from URL into pandas dataframe."""
@@ -39,3 +45,4 @@ def read_csv(url, sep=","):
     """Direct load CSV file from URL into pandas dataframe."""
     data = pandas.read_csv(pyodide.open_url(url), sep=sep)
     return data
+
