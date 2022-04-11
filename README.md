@@ -52,9 +52,22 @@ guess_domain()
 """
 ```
 
-In some cases, you may be able to use trick when trying to load files from the "local" Jupterlite filesystem via the file URL (does not work on `try.jupyter.org`). In other cases, you may need to find the domain name *and the path to the distribution* as well as data directory path. For example in the [https://jupyterlite.github.io/demo/lab/index.html](https://jupyterlite.github.io/demo/lab/index.html) demo, `guess_domain()` returns 'https://jupyterlite.github.io' but the environment actually lives at `https://jupyterlite.github.io/demo/`. Files can be downloaded from the environment on the path `JUPYTERLITE_DOMAIN/PATH/files/`. For the JupyterLite demo environment, the `files` path is `https://jupyterlite.github.io/demo/files/`. Files can then be downloaded by adding the file browser path to a file, for example: `https://jupyterlite.github.io/demo/files/data/iris.csv`.
+Files included in the distribution that apear in the file browser can be found on the path `/files`.
 
-This package is based on various handy tricks collected from various sources.
+In some cases, you may be able to the `guess_domain()` trick when trying to load files from the "local" Jupterlite filesystem via the file URL (this does not work when on the `try.jupyter.org` domain). In other cases, you may need to find the domain name *and the path to the distribution* as well as data directory path.
+
+For example in the [https://jupyterlite.github.io/demo/lab/index.html](https://jupyterlite.github.io/demo/lab/index.html) demo, `guess_domain()` returns 'https://jupyterlite.github.io' but the environment actually lives at `https://jupyterlite.github.io/demo/`. Files can be downloaded from the environment on the path `JUPYTERLITE_DOMAIN/PATH/files/`.
+
+For the JupyterLite demo environment, the `files` path is `https://jupyterlite.github.io/demo/files/`. Files can then be downloaded by adding the file browser path to a file, for example: `https://jupyterlite.github.io/demo/files/data/iris.csv`.
+
+### How do I reset a modified, distributed file back to the original?
+
+If a file is shipped with the JupyterLite distribution, you can open it, edit it, and save the modified version to browser storage. To reet the file to the original, shipped version, just delete it... This will delete it from the browser storage and it will reappear in its original form. (If for some reason it doesn't reappear after deleting it, just reload the JupyterLite enviroment.)
+
+### How do I use `requests`'?
+
+The `requests` package doesn't work out of the can, but here's a way round it for now... [*Making the Python requests module work in Pyodide*](https://bartbroere.eu/2021/11/05/pyodide-requests/) and [`bartbroere/pyodide-requests`](https://github.com/bartbroere/pyodide-requests).
+
 ### Load in file from remote URL
 
 We can easily read in a file from a remote URL using `pyodide.open_url(url)`:
