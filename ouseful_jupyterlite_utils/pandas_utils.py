@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore")
 # Via: https://github.com/jupyterlite/jupyterlite/issues/119#issuecomment-854495013
 async def read_csv_local(fn, sep=","):
     """"""
-    return pd.read_csv(io.StringIO((await get_contents(fn))["content"]), sep = sep)
+    return pd.read_csv(io.StringIO(await get_contents(fn)), sep = sep)
 #df = await read_csv_local("iris.csv", "\t")
 #df
 
